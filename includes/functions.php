@@ -1,59 +1,190 @@
 <?php
-require_once 'db.php';
+require_once 'config.php';
+// ===============================
+// SMART HOSTEL MANAGEMENT SYSTEM
+// Common Functions
+// ===============================
 
-/**
- * Sanitize user input
- */
-function sanitize($data)
-{
-    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
 }
 
-/**
- * Redirect to another page
- */
-function redirect($url)
-{
-    header("Location: $url");
-    exit();
+$host = DB_HOST;
+$dbname = DB_NAME;
+$username = DB_USER;
+$password = DB_PASS;
+
+try{
+
+    $conn = new PDO(
+        "mysql:host=$host;dbname=$dbname;charset=utf8",
+        $username,
+        $password
+    );
+
+    $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+}catch(PDOException $e){
+
+    die("Database Connection Failed.");
+
 }
 
-/**
- * Check if student is logged in
- */
-function isStudentLoggedIn()
-{
+
+// ===============================
+// SANITIZE INPUT
+// ===============================
+
+function sanitize($data){
+
+    return htmlspecialchars(trim($data));
+
+}
+
+
+
+// ===============================
+// STUDENT LOGIN CHECK
+// ===============================
+
+function studentLoggedIn(){
+
     return isset($_SESSION['student_id']);
+
 }
 
-/**
- * Check if administrator is logged in
- */
-function isAdminLoggedIn()
-{
+
+
+// ===============================
+// ADMIN LOGIN CHECK
+// ===============================
+
+function adminLoggedIn(){
+
     return isset($_SESSION['admin_id']);
+
 }
 
-/**
- * Display success message
- */
-function successMessage($message)
-{
-    $_SESSION['success'] = $message;
+
+
+// ===============================
+// REDIRECT
+// ===============================
+
+function redirect($url){
+
+    header("Location: ".$url);
+
+    exit();
+
 }
 
-/**
- * Display error message
- */
-function errorMessage($message)
-{
-    $_SESSION['error'] = $message;
+
+
+// ===============================
+// STUDENT AUTH
+// ===============================
+
+function requireStudent(){
+
+    if(!studentLoggedIn()){
+
+        redirect("../login.php");
+
+    }
+
 }
 
-/**
- * Generate current date/time
- */
-function currentDateTime()
-{
-    return date('Y-m-d H:i:s');
+
+
+// ===============================
+// ADMIN AUTH
+// ===============================
+
+function requireAdmin(){
+
+    if(!adminLoggedIn()){
+
+        redirect("../login.php");
+
+    }
+
 }
+
+
+
+// ===============================
+// ESCAPE OUTPUT
+// ===============================
+
+function e($string){
+
+    return htmlspecialchars($string,ENT_QUOTES,'UTF-8');
+
+}
+
+
+
+// ===============================
+// RANDOM HOSTEL APPLICATION CODE
+// ===============================
+
+function applicationCode(){
+
+    return "APP".date("Ymd").rand(1000,9999);
+
+}
+
+
+
+// ===============================
+// RANDOM ROOM CODE
+// ===============================
+
+function roomCode(){
+
+    return "RM".rand(100,999);
+
+}
+
+
+
+// ===============================
+// SUCCESS MESSAGE
+// ===============================
+
+function success($msg){
+
+    return '
+
+    <div class="alert alert-success">
+
+    '.$msg.'
+
+    </div>
+
+    ';
+
+}
+
+
+
+// ===============================
+// ERROR MESSAGE
+// ===============================
+
+function error($msg){
+
+    return '
+
+    <div class="alert alert-danger">
+
+    '.$msg.'
+
+    </div>
+
+    ';
+
+}
+
+?>
