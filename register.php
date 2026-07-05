@@ -1,4 +1,9 @@
 <?php
+<?php
+
+error_reporting(E_ALL);
+ini_set('display_errors',1);
+
 require_once 'includes/functions.php';
 
 $message = "";
@@ -151,7 +156,7 @@ VALUES
 
 ");
 
-$stmt->execute([
+if($stmt->execute([
 
 $matric_number,
 $surname,
@@ -165,19 +170,19 @@ $email,
 $hashed,
 $passport
 
-]);
+])){
 
 $message=success("Registration successful. Please login to continue.");
 
-}
+}else{
+
+echo "<pre>";
+
+print_r($stmt->errorInfo());
+
+echo "</pre>";
 
 }
-
-}
-
-}
-
-?>
 
 <!DOCTYPE html>
 
