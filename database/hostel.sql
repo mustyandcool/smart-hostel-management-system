@@ -25,21 +25,36 @@ CREATE TABLE administrators (
 -- ============================================
 
 CREATE TABLE students (
-    student_id INT AUTO_INCREMENT PRIMARY KEY,
-    matric_number VARCHAR(30) UNIQUE NOT NULL,
-    surname VARCHAR(50) NOT NULL,
-    other_names VARCHAR(100) NOT NULL,
-    gender ENUM('Male','Female') NOT NULL,
-    department VARCHAR(100) NOT NULL,
-    level VARCHAR(20) NOT NULL,
-    phone VARCHAR(20) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    passport VARCHAR(255),
-    status ENUM('Active','Inactive') DEFAULT 'Active',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
+student_id INT AUTO_INCREMENT PRIMARY KEY,
+
+matric_number VARCHAR(30) UNIQUE NOT NULL,
+
+surname VARCHAR(60) NOT NULL,
+
+other_names VARCHAR(120),
+
+gender ENUM('Male','Female') NOT NULL,
+
+faculty VARCHAR(100) NOT NULL,
+
+department VARCHAR(120) NOT NULL,
+
+level VARCHAR(40) NOT NULL,
+
+phone VARCHAR(20) NOT NULL,
+
+email VARCHAR(100) UNIQUE NOT NULL,
+
+password VARCHAR(255) NOT NULL,
+
+passport VARCHAR(255),
+
+status ENUM('Active','Inactive') DEFAULT 'Active',
+
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
 -- ============================================
 -- TABLE: HOSTELS
 -- ============================================
