@@ -1,165 +1,171 @@
-:root{
+/* ===============================
+   SMART HOSTEL UI SYSTEM v2
+   Modern SaaS Design Foundation
+=================================*/
 
---primary:#0d6efd;
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --secondary: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
 
---secondary:#198754;
+    --dark: #0f172a;
+    --muted: #64748b;
+    --light: #f1f5f9;
+    --white: #ffffff;
 
---danger:#dc3545;
-
---dark:#1f2937;
-
---light:#f8f9fa;
-
---white:#ffffff;
-
+    --gradient: linear-gradient(135deg, #4f46e5, #10b981);
 }
 
-*{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-font-family:Segoe UI,Tahoma,sans-serif;
-
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
 }
 
-body{
-
-background:url("../images/bg.jpg") no-repeat center center fixed;
-
-background-size:cover;
-
+body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    min-height: 100vh;
+    color: var(--white);
 }
 
-.overlay{
-
-background:rgba(0,0,0,.65);
-
-min-height:100vh;
-
-padding:50px 0;
-
+/* BACKGROUND OVERLAY */
+.overlay {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px;
 }
 
-.glass-card{
-
-background:rgba(255,255,255,.18);
-
-backdrop-filter:blur(16px);
-
-border-radius:18px;
-
-border:1px solid rgba(255,255,255,.25);
-
-box-shadow:0 20px 40px rgba(0,0,0,.25);
-
+/* GLASS CARD */
+.glass-card {
+    width: 100%;
+    max-width: 520px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    overflow: hidden;
 }
 
+/* HEADER */
+.card-header {
+    text-align: center;
+    padding: 30px 20px 10px;
+}
+
+.logo-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* FORM AREA */
+.card-body {
+    padding: 25px;
+}
+
+/* INPUT FIELDS */
 .form-control,
-
-.form-select{
-
-height:50px;
-
-border-radius:10px;
-
+.form-select {
+    width: 100%;
+    height: 48px;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.05);
+    color: var(--white);
+    outline: none;
+    transition: 0.3s;
 }
 
-.btn-primary{
-
-height:50px;
-
-font-weight:bold;
-
-font-size:17px;
-
-border-radius:10px;
-
+.form-control::placeholder {
+    color: rgba(255,255,255,0.6);
 }
 
-.title{
-
-color:#fff;
-
-text-align:center;
-
-margin-bottom:30px;
-
-font-weight:bold;
-
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    background: rgba(255,255,255,0.08);
 }
 
-.logo-icon{
-
-font-size:60px;
-
-color:#fff;
-
-margin-bottom:10px;
-
+/* BUTTON */
+.btn-primary {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 10px;
+    background: var(--gradient);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.card-header{
-
-background:transparent;
-
-border:none;
-
-text-align:center;
-
-color:#fff;
-
-padding-top:30px;
-
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(79,70,229,0.4);
 }
 
-.card-body{
-
-padding:35px;
-
+/* LINKS */
+a {
+    color: var(--secondary);
+    text-decoration: none;
 }
 
-.footer-link{
-
-text-align:center;
-
-margin-top:20px;
-
+a:hover {
+    text-decoration: underline;
 }
 
-.footer-link a{
-
-text-decoration:none;
-
-font-weight:bold;
-
+/* SPINNER */
+.spinner {
+    display: none;
+    text-align: center;
+    margin-top: 10px;
 }
 
-img.preview{
-
-width:120px;
-
-height:120px;
-
-object-fit:cover;
-
-border-radius:50%;
-
-border:4px solid white;
-
-display:none;
-
-margin:auto;
-
-margin-bottom:15px;
-
+/* PASSPORT PREVIEW */
+img.preview {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.3);
+    display: none;
+    margin: 10px auto;
 }
 
-.spinner{
+/* SMALL TEXT */
+.small-text {
+    font-size: 13px;
+    color: var(--muted);
+}
 
-display:none;
+/* FOOTER */
+.footer-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+}
 
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .glass-card {
+        margin: 10px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
 }
